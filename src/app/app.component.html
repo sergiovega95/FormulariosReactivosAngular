@@ -1,23 +1,32 @@
-<h1>Formularios reactivos</h1>
+
+  <h1>Formularios reactivos</h1>
 
 <form [formGroup]="formulario" (ngSubmit)="save()">
 
   <div class="form-group">
     <label >Usuario</label>
-    <input [ngClass]="formulario.get('usuario').valid ? '' : 'is-invalid' " class="form-control" formControlName="usuario"  type="text"  placeholder="Ingrese un nombre de usuario"> 
+    <input [ngClass]="formulario.get('usuario').invalid && formulario.get('usuario').touched ? 'is-invalid' : '' " class="form-control" formControlName="usuario"  type="text"  placeholder="Ingrese un nombre de usuario"> 
     <div class="invalid-feedback" *ngIf="formulario.get('usuario').touched && formulario.get('usuario').hasError('required')" >Campo obligatorio</div>
   </div>
 
   <div class="form-group">
     <label >Email</label>
-    <input formControlName="email" type="email" [ngClass]="formulario.get('email').valid ? '' : 'is-invalid' " class="form-control" placeholder="Ingrese su correo electronico">  
+    <input formControlName="email" type="email" [ngClass]="formulario.get('email').invalid && formulario.get('email').touched ? 'is-invalid' : '' " class="form-control" placeholder="Ingrese su correo electronico">  
     <div class="invalid-feedback" *ngIf="formulario.get('email').touched && formulario.get('email').hasError('required')" >Campo obligatorio</div>
     <div class="invalid-feedback" *ngIf="formulario.get('email').touched && formulario.get('email').hasError('email')" >Ingrese un correo valido</div>
+    <div class="invalid-feedback" *ngIf="formulario.get('email').touched && formulario.get('email').hasError('IsEmailLock')" >Ya existe una cuenta creada con este e-mail</div>
+  </div>
+
+  <div class="form-group">
+    <label >Edad</label>
+    <input  formControlName="edad" min="0" max="99" type="number" [ngClass]="formulario.get('edad').invalid && formulario.get('edad').touched ? 'is-invalid' : '' " class="form-control"  placeholder="Ingrese su edad">
+    <div class="invalid-feedback" *ngIf="formulario.get('edad').touched && formulario.get('edad').hasError('required')" >Campo obligatorio</div>
+    <div class="invalid-feedback" *ngIf="formulario.get('edad').touched && formulario.get('edad').hasError('IsMenorEdad')" >Tiene menos de {{edadMayorEdad}} años</div>
   </div>
 
   <div class="form-group">
     <label >Password</label>
-    <input  formControlName="password" type="password" [ngClass]="formulario.get('password').valid ? '' : 'is-invalid' " class="form-control"  placeholder="Contraseña">
+    <input  formControlName="password" type="password" [ngClass]="formulario.get('password').invalid && formulario.get('password').touched ? 'is-invalid' : '' " class="form-control"  placeholder="Contraseña">
     <div class="invalid-feedback" *ngIf="formulario.get('password').touched && formulario.get('password').hasError('required')" >Campo obligatorio</div>
     <div class="invalid-feedback" *ngIf="formulario.get('password').touched && formulario.get('password').hasError('pattern')" >La contraseña debe tener minimo 4 caracteres y maximo 8</div>
   </div>
@@ -25,7 +34,7 @@
  
   <div class="form-group">
     <label>Confirm password</label>
-    <input formControlName="repeatpassword" type="password" [ngClass]="formulario.get('repeatpassword').valid ? '' : 'is-invalid' " class="form-control" placeholder="Confirmar contraseña">
+    <input formControlName="repeatpassword" type="password" [ngClass]="formulario.get('repeatpassword').invalid && formulario.get('repeatpassword').touched ? 'is-invalid' : '' " class="form-control" placeholder="Confirmar contraseña">
     <div class="invalid-feedback" *ngIf="formulario.get('repeatpassword').touched && formulario.get('repeatpassword').hasError('required')" >Campo obligatorio</div>
     <div class="invalid-feedback" *ngIf="formulario.get('repeatpassword').touched && formulario.get('repeatpassword').hasError('pattern')" >La contraseña debe tener minimo 4 caracteres y maximo 8</div>
   </div>
@@ -37,9 +46,9 @@
 
       <div class="form-group">
         <label for="exampleFormControlSelect1">Seleccione un departamento</label>
-        <select  [ngClass]="formulario.get('departamento').valid ? '' : 'is-invalid' "  formControlName="departamento" class="form-control">
-           
-          <option *ngFor="let departamento of departamentos" value="{{departamento}}">{{departamento.nombre}}</option>
+        <select #departamento (change) ="DepartamentoSeleccionado(departamento.value)" [ngClass]="formulario.get('departamento').invalid && formulario.get('departamento').touched ? 'is-invalid' : '' "  formControlName="departamento" class="form-control">
+          
+          <option *ngFor="let departamento of departamentos" value="{{departamento|json}}">{{departamento.nombre}}</option>
         </select>
         <div class="invalid-feedback" *ngIf="formulario.get('departamento').touched && formulario.get('departamento').hasError('required')">Seleccione un departamento</div>
       </div>
@@ -49,9 +58,9 @@
     <div class="col-6">
       <div class="form-group">
         <label for="exampleFormControlSelect1">Seleccione su ciudad</label>
-        <select  [ngClass]="formulario.get('ciudad').valid ? '' : 'is-invalid' "  formControlName="ciudad" class="form-control">
+        <select id="selectboxMunicipios" disabled [ngClass]="formulario.get('ciudad').invalid && formulario.get('ciudad').touched ? 'is-invalid' : '' "  formControlName="ciudad" class="form-control">
              
-          <option *ngFor="let ciudad of ciudades" value="{{ciudad}}">{{ciudad.nombre}}</option>
+          <option *ngFor="let ciudad of ciudadesFiltrada" value="{{ciudad | json}}">{{ciudad.nombre}}</option>
         </select>
         <div class="invalid-feedback" *ngIf="formulario.get('ciudad').touched && formulario.get('ciudad').hasError('required')">Seleccione una ciudad</div>
       </div>
@@ -64,6 +73,9 @@
   <button (click)="LimpiarFormulario()" type="button" class="btn btn-primary">Limpiar</button>
 
 </form>
+
+
+
 
 
 
