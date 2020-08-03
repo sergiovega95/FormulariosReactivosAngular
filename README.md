@@ -7,8 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Overview
-
-(https://raw.githubusercontent.com/sergiovega95/FormulariosReactivosAngular/master/src/assets/images/Capture1.PNG)
+<img align="left" src="https://raw.githubusercontent.com/sergiovega95/FormulariosReactivosAngular/master/src/assets/images/Capture1.PNG">
 
 ## Using default angular validations
 ![Cat](https://raw.githubusercontent.com/sergiovega95/FormulariosReactivosAngular/master/src/assets/images/Capture2.PNG)
