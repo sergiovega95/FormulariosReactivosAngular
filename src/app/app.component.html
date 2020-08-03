@@ -6,7 +6,7 @@
   <div class="form-group">
     <label >Usuario</label>
     <input [ngClass]="formulario.get('usuario').invalid && formulario.get('usuario').touched ? 'is-invalid' : '' " class="form-control" formControlName="usuario"  type="text"  placeholder="Ingrese un nombre de usuario"> 
-    <div class="invalid-feedback" *ngIf="formulario.get('usuario').touched && formulario.get('usuario').hasError('required')" >Campo obligatorio</div>
+    <div class="invalid-feedback" *ngIf="formulario.get('usuario').touched && formulario.get('usuario').hasError('required')" >Campo obligatorio</div>    
   </div>
 
   <div class="form-group">
@@ -28,7 +28,7 @@
     <label >Password</label>
     <input  formControlName="password" type="password" [ngClass]="formulario.get('password').invalid && formulario.get('password').touched ? 'is-invalid' : '' " class="form-control"  placeholder="Contraseña">
     <div class="invalid-feedback" *ngIf="formulario.get('password').touched && formulario.get('password').hasError('required')" >Campo obligatorio</div>
-    <div class="invalid-feedback" *ngIf="formulario.get('password').touched && formulario.get('password').hasError('pattern')" >La contraseña debe tener minimo 4 caracteres y maximo 8</div>
+    <div class="invalid-feedback" *ngIf="formulario.get('password').touched && formulario.get('password').hasError('pattern')" >La contraseña debe tener minimo 4 carácteres y maximo 8</div>
   </div>
 
  
