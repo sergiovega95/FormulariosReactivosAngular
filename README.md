@@ -8,6 +8,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Images
 
-(https://raw.githubusercontent.com/sergiovega95/FormulariosReactivosAngular/blob/master/src/assets/images/Capture1.PNG)
+![Cat](https://raw.githubusercontent.com/sergiovega95/FormulariosReactivosAngular/master/src/assets/images/Capture1.PNG)
 
 
