@@ -10,8 +10,10 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ![Cat](https://raw.githubusercontent.com/sergiovega95/FormulariosReactivosAngular/master/src/assets/images/Capture1.PNG)
 
+Using default angular validations
 ![Cat](https://raw.githubusercontent.com/sergiovega95/FormulariosReactivosAngular/master/src/assets/images/Capture2.PNG)
 
+Using custom validations (sync and async)
 ![Cat](https://raw.githubusercontent.com/sergiovega95/FormulariosReactivosAngular/master/src/assets/images/Capture3.PNG)
 
 
